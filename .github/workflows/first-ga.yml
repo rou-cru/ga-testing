@@ -29,4 +29,7 @@ jobs: # Inician las descripciones de Jobs
       - name: Print Hello # Nombre del Step
         run: echo "Waaaazaaaaa!!!" # Shell ejecutado por el Step
       - name: Print Bye
-        run: echo "See you bro!"
+        run: | # Tambien es posible el uso de Steps multilinea
+          echo "Waaaazaaaaaa!!!"
+          ls
+          echo "See you bro!"
