@@ -30,6 +30,7 @@ jobs: # Inician las descripciones de Jobs
         run: echo "Waaaazaaaaa!!!" # Shell ejecutado por el Step
       - name: Print Bye
         run: | # Tambien es posible el uso de Steps multilinea
+          pwd
           echo "Waaaazaaaaaa!!!"
           ls
           echo "See you bro!"
