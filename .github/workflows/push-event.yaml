@@ -1,0 +1,29 @@
+name: Push Test
+on: push
+jobs:
+# ----------------------------------------------------------------------------------------------------------------------
+# Dado que los Jobs se ejecutan en un Runner(una VM fresca) por lo que es comun el tener que instalar paquetes y
+# herramientas como parte de los Jobs. Igualmente es importante recordar que el Workflow esta ligado al repo, no el Job,
+# por esto el Job no tiene el codigo del repo disponible aun y debe ser clonado al Runner de manera explicita para ello.
+# ----------------------------------------------------------------------------------------------------------------------
+  macJob:
+    runs-on: macos-latest # Ejecucion en MacOS!
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4 # Action a ejecutar en vez de usar Shell para este caso
+    - name: Install GitHub CLI
+      run: | # Instalacion de herramientas en el Runner
+        brew update
+        brew install checkov
+# ----------------------------------------------------------------------------------------------------------------------
+# No existe problema alguno en que cada Job tenga un entorno totalmente diferente ya que cada uno tendra un Runner
+# independiente del resto y por tanto se ejecuta aislado. En el caso de los steps no siempre interesa darle un nombre
+# y en realidad hacerlo es opcional.
+# Si bien es usual tener que instalar herramientas, Github si proporciona algunas por default, por ejemplo en este
+# caso Chocolatly esta listo para ser usado.
+# ----------------------------------------------------------------------------------------------------------------------
+  winJob:
+    runs-on: windows-latest # Es posible usar Windows en el Runner!
+    steps: # Que se pueda hacer una ejecucion multilinea no implica que se tenga que hacer de este modo.
+      - run: choco install terraform
+      - run: terraform version

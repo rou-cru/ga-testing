@@ -1,5 +1,5 @@
 # El archivo entero es un Workflow:
-# - Se liga al repo donde se encuentra
+# - Se liga al repo donde se encuentra, PERO NO se ejecuta "en" el repo.
 # - Se va definiendo a partir de los "Jobs" que incluye
 # - Define el Trigger original que podra ejecutar el Workflow, por ejemplo un evento como un "Push"
 # ----------------------------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ on: workflow_dispatch # Trigger, en este caso se ejecutara solo manualmente.
 # - El Runner: Donde se ejecutara el Job, una VM+OS generalmente gestionada y proveida por Github.
 #              Es posible usar runners personalizados, desde un proveedor Cloud por ejemplo.
 # - Los Steps: Las tareas puntuales requeridas para completar el Job.
-# 
+#
 # Por default, los Jobs se ejecutan en paralelo, pero pueden ser sequenciales si se desea.
 # Tambien es posible condicionar la ejecucion de un Job.
 # ----------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ jobs: # Inician las descripciones de Jobs
   first-job: # Nombre de este Job
     runs-on: ubuntu-latest # El Runner del Job
 # ----------------------------------------------------------------------------------------------------------------------
-# Los Steps ejecutan cmds de Shell o un "Action". Las Actions pueden ser personalizadas o usar una del Market que ofrece 
+# Los Steps ejecutan cmds de Shell o un "Action". Las Actions pueden ser personalizadas o usar una del Market que ofrece
 # Github(muchas son gratuitas, pero pueden generar costos tambien).
 # Cada Step sera ejecutado linealmente uno a uno. Tambien puede ser condicionada la ejecucion del Step.
 # Los Steps se definen con un nombre y su accion
